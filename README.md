@@ -13,4 +13,4 @@ The main Protobowl interface is <a href="https://github.com/18AkbarA/MCQuizbowl/
 The compiled jar (which you can run on your server) is <a href="https://github.com/18AkbarA/MCQuizbowl/tree/master/target" target="_blank">HERE</a>.<br>
 
 
-<img src="https://t1.rbxcdn.com/c73e5458667dd076cf5834e4c6e1713d" style="width:100px"></img> -What are you waiting for? lets get going!
+<img src="https://camo.githubusercontent.com/95d45a3e0fa04063d9bae3a148f31ad9b39318a2/687474703a2f2f6a616d69656269636b6e656c6c2e6769746875622e696f2f4d696e6563726166742d4176617461722f73746576652d666163652e706e67" style="width:100px"></img> -What are you waiting for? lets get going!
