@@ -1,0 +1,45 @@
+name: MCQuizbowl
+main: com.mcquizbowl.main.mainClass
+version: Alpha 0.1
+author: mysterylegodude
+commands:
+   joinroom:
+      description: Join a quizbowl room.
+      usage: /joinroom <Room Number (1,2,3,4)>
+      permission: MCQuizbowl.joinroom
+      permission-message: You don't have <permission>
+   leaveroom:
+      description: Leave a quizbowl room.
+      usage: /testroom
+      permission: MCQuizbowl.leaveroom
+      permission-message: You don't have <permission>
+   startquestion:
+      description: Starts a question.
+      usage: /startquestion
+      permission: MCQuizbowl.startquestion
+      permission-message: You don't have <permission>
+   ans:
+      description: Answers a question.
+      usage: /ans <answer>
+      permission: MCQuizbowl.ans
+      permission-message: You don't have <permission>
+   buzz:
+      description: Buzzes for a question.
+      usage: /buzz
+      permission: MCQuizbowl.buzz
+      permission-message: You don't have <permission>
+   unbuzz:
+      description: Unbuzzes.
+      usage: /unbuzz
+      permission: MCQuizbowl.unbuzz
+      permission-message: You don't have <permission>
+   setcategory:
+      description: Sets the rooms category to <category>.
+      usage: /setcategory <category>
+      permission: MCQuizbowl.setcategory
+      permission-message: You don't have <permission>
+   setdifficulty:
+      description: Sets the rooms difficulty to <difficulty>.
+      usage: /setdifficulty <difficulty>
+      permission: MCQuizbowl.setdifficulty
+      permission-message: You don't have <permission>
