@@ -40,10 +40,10 @@ import org.bukkit.scoreboard.*;
 public class roomCmds implements CommandExecutor {
 
 	
-	public ScoreboardManager manager = Bukkit.getScoreboardManager();
+	/*public ScoreboardManager manager = Bukkit.getScoreboardManager();
 	public Scoreboard board = manager.getNewScoreboard();
 	 
-	public Objective score = board.registerNewObjective("Score", "dummy");
+	public Objective score = board.registerNewObjective("Score", "dummy");*/
 	
 	public ProtobowlConnect questioner = new ProtobowlConnect();
 
@@ -62,8 +62,10 @@ public class roomCmds implements CommandExecutor {
 	public roomCmds(mainClass plugin) {
 		
 
-		score.setDisplaySlot(DisplaySlot.SIDEBAR);
-		score.setDisplayName("Score");
+		/*score.setDisplaySlot(DisplaySlot.SIDEBAR);
+		score.setDisplayName("Score");*/
+		
+		
 		this.plugin = plugin; // Store the plugin in situations where you need it.
 	}
 	
@@ -94,6 +96,7 @@ public class roomCmds implements CommandExecutor {
     				sender.sendMessage("Error: number must one of the following: " +roomList);
     			}
     			else{
+    				
     				
     				boolean stopCheckingRooms = false;
     				boolean continueOn = true;
@@ -148,7 +151,10 @@ public class roomCmds implements CommandExecutor {
     						questioner.connectToRoom(roomName,"testBot");
     						}
     							
-    							
+
+    	    		    	Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "scoreboard objectives add Score dummy");
+    	    		    	Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "scoreboard objectives setdisplay sidebar Score");
+
     							
     							
     							
@@ -369,13 +375,17 @@ public class roomCmds implements CommandExecutor {
 					
 					if(checkAns.checkAllPossibilities()){
 						//questioner.correctAnswerer = playerName;
+						
+						questioner.setCorrectAnswerer(playerName, answerGiven);
 						questioner.finishQuestion();
 						
-						questioner.sendToAll(ChatColor.GREEN + "" + ChatColor.BOLD + playerName + ChatColor.RESET + ChatColor.GREEN +" got the question correct by answering: " + ChatColor.BOLD + answerGiven + ChatColor.RESET + ChatColor.GREEN +"!");
+						
+						Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "scoreboard players add " + playerName + " Score 10");
+						//questioner.sendToAll(ChatColor.GREEN + "" + ChatColor.BOLD + playerName + ChatColor.RESET + ChatColor.GREEN +" got the question correct by answering: " + ChatColor.BOLD + answerGiven + ChatColor.RESET + ChatColor.GREEN +"!");
 
 						
-						int playerScore = score.getScore(Bukkit.getPlayer(playerName)).getScore();
-						score.getScore(Bukkit.getPlayer(playerName)).setScore(playerScore + 10);
+						/*int playerScore = score.getScore(Bukkit.getPlayer(playerName)).getScore();
+						score.getScore(Bukkit.getPlayer(playerName)).setScore(playerScore + 10);*/
 						//questioner.sendToAll(ChatColor.GREEN );
 						
 					}

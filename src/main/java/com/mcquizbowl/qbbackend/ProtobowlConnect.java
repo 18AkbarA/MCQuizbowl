@@ -43,9 +43,9 @@ public class ProtobowlConnect {
 	public static int roomNumber = 0;
 	public static int portNumber = 0;
 	
-	public String correctAnswerer = "";
+	public static String correctAnswerer = "";
 	
-	public String answerGiven = "";
+	public static String answerGiven = "";
 	
 	public boolean correctAnswerReached = false;
 	public boolean noonesBuzzed = true;
@@ -250,7 +250,22 @@ public class ProtobowlConnect {
 					
 				}
 				else{
-					questionEnd();
+					int delaySecs = 0;
+					
+					while(delaySecs < 3){
+						hasBuzzed = filer.readFile("datafiles/buzzedinroom" + roomNumber + ".txt");
+						if(hasBuzzed.equals("noonesbuzzed")){
+							delayTime(1000);
+							delaySecs++;
+						}
+						else if(hasBuzzed.equals("finishedQuestion")){
+							questionEnd();
+							break;
+						}
+					}
+					if(delaySecs >= 3){
+						questionEnd();
+					}
 				}
 			
 				i++;
@@ -260,6 +275,7 @@ public class ProtobowlConnect {
 					this.sendToAll(brokenQuestion[k]);
 					
 					if(k == brokenQuestion.length - 1){
+		
 						questionEnd();
 					}
 				}
@@ -278,7 +294,9 @@ public class ProtobowlConnect {
 	
 	public void questionEnd(){
 		sendToAll("-------------------------------");
-		filer.writeFile("datafiles/buzzedinroom" + roomNumber + ".txt", "finishedQuestion");	
+		filer.writeFile("datafiles/buzzedinroom" + roomNumber + ".txt", "finishedQuestion");
+		
+		
 		if(correctAnswerer.equals("")){
 			
 		}

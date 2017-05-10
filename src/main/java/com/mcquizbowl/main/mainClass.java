@@ -14,19 +14,25 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.*;
-import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 
-public final class mainClass extends JavaPlugin {
+
+public final class mainClass extends JavaPlugin implements Listener{
 	
 	public ArrayList<String> playersInRoom = new ArrayList<String>();
 	
     @Override
     public void onEnable() {
         // TODO Insert logic to be performed when the plugin is enabled
+    	getServer().getPluginManager().registerEvents(this, this);
     	getLogger().info("onEnable has been invoked!");
     	
     	//Custom filter to remove unnecessary messages
@@ -46,6 +52,7 @@ public final class mainClass extends JavaPlugin {
     	this.getCommand("setcategory").setExecutor(new roomCmds(this));
     	
     	
+    	
     }
     
     @Override
@@ -53,10 +60,16 @@ public final class mainClass extends JavaPlugin {
         // TODO Insert logic to be performed when the plugin is disabled
     }
     
+   
     //When a player leaves.
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
+    	
     	Player p = e.getPlayer();
+    	Bukkit.getLogger().info(p.getName() + " has quit!");
+    	Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "scoreboard players reset " + p.getName());
+
+    	
     	Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), p.getName() + "left!");
     	Bukkit.getServer().dispatchCommand(p, "leaveroom");
     }
